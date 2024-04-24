@@ -1,0 +1,43 @@
+{
+  "name": "xhr-promisify",
+  "version": "1.0.0",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "vite build",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@vitest/coverage-v8": "^1.4.0",
+    "camelcase": "^8.0.0",
+    "typescript": "^5.2.2",
+    "vite": "^5.1.6",
+    "vite-plugin-external": "^4.3.0",
+    "vitest": "^1.4.0"
+  },
+  "description": "Promise based HTTP client for the browser.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fengxinming/util.git"
+  },
+  "keywords": [
+    "xhr",
+    "http"
+  ],
+  "author": "Jesse <fxm0016@126.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fengxinming/util/issues"
+  },
+  "homepage": "https://github.com/fengxinming/util#readme",
+  "dependencies": {
+    "celia": "workspace:^",
+    "fast-qs": "^2.0.2",
+    "tslib": "^2.6.2"
+  },
+  "files": [
+    "dist"
+  ]
+}

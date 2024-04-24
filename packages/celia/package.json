@@ -1,0 +1,46 @@
+{
+  "name": "celia",
+  "version": "9.0.2",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/typings.d.ts",
+  "scripts": {
+    "build": "vite build",
+    "prepublishOnly": "npm run build",
+    "test": "vitest run --coverage",
+    "release:beta": "npm publish --tag=beta"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.6",
+    "camelcase": "^8.0.0",
+    "moment": "^2.30.1",
+    "terser": "^5.30.4",
+    "typescript": "^5.2.2",
+    "vite": "^5.1.6",
+    "vite-plugin-combine": "^4.0.2",
+    "vite-plugin-cp": "^4.0.8",
+    "vite-plugin-external": "^4.3.1",
+    "vitest": "^1.4.0"
+  },
+  "dependencies": {
+    "base-log-factory": "^1.0.2",
+    "tslib": "^2.6.2"
+  },
+  "description": "A modern JavaScript utility library delivering modularity, performance, & extras.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fengxinming/util.git"
+  },
+  "keywords": [
+    "util"
+  ],
+  "author": "Jesse <fxm0016@126.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fengxinming/util/issues"
+  },
+  "homepage": "https://github.com/fengxinming/util#readme",
+  "files": [
+    "dist"
+  ]
+}

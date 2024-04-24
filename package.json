@@ -1,66 +1,31 @@
 {
-  "name": "celia",
-  "version": "7.0.1",
-  "description": "A modern JavaScript utility library delivering modularity, performance, and extras.",
-  "main": "index.js",
-  "module": "es/index.js",
-  "unpkg": "celia.js",
-  "jsdelivr": "celia.js",
+  "name": "util",
+  "version": "0.0.1",
+  "private": true,
+  "description": "A modern JavaScript utility library delivering modularity, performance, & extras.",
   "scripts": {
-    "build": "rollup -c",
-    "test": "jest --detectOpenHandles --config jest.config.js",
-    "gh-pages": "git subtree push --prefix=gh-pages origin gh-pages",
-    "release": "npm publish dist"
+    "deps": "npm run clean && pnpm install",
+    "clean": "rm -rf node_modules ./packages/*/node_modules",
+    "build": "pnpm run -r build",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx,.mjs --cache --fix --ignore-path .eslintignore ./",
+    "test": "pnpm run -r test",
+    "prepare": "husky",
+    "lint-staged": "lint-staged",
+    "eslint": "eslint --ext .js,.mjs,.jsx,.ts,.tsx --fix --ignore-path .eslintignore ./",
+    "gh-pages": "git subtree push --prefix=gh-pages origin gh-pages"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/fengxinming/celia.git"
-  },
-  "keywords": [
-    "util",
-    "lodash",
-    "underscore"
-  ],
-  "author": "Jesse Feng",
+  "author": "Jesse Feng <fxm0016@126.com>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/fengxinming/celia/issues"
-  },
-  "homepage": "https://github.com/fengxinming/celia#readme",
   "devDependencies": {
-    "@babel/core": "^7.9.0",
-    "@babel/preset-env": "^7.9.0",
-    "babel-jest": "^25.1.0",
-    "clrsole": "^3.0.0",
-    "eslint": "^6.8.0",
-    "eslint-config-standard": "^14.1.1",
-    "eslint-plugin-import": "^2.20.1",
-    "eslint-plugin-node": "^11.0.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "fs-extra": "^9.0.0",
-    "jest": "^25.1.0",
-    "moment": "^2.24.0",
-    "rollup": "^2.1.0",
-    "rollup-plugin-combine": "^2.0.0",
-    "rollup-plugin-copy": "^3.3.0",
-    "rollup-plugin-empty": "^1.0.0",
-    "rollup-plugin-match": "^1.0.0",
-    "rollup-plugin-terser": "^5.3.0"
+    "@commitlint/cli": "^19.2.1",
+    "@commitlint/config-conventional": "^19.1.0",
+    "eslint": "^8.57.0",
+    "eslint-config-fe": "^2.1.2",
+    "eslint-plugin-simple-import-sort": "^12.0.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "git add"
-    ],
-    "*.md": [
-      "prettier --single-quote --write",
-      "git add"
-    ]
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
