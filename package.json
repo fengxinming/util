@@ -9,24 +9,25 @@
     "eslint-config-fe": "^2.1.2",
     "eslint-plugin-simple-import-sort": "^12.1.0",
     "husky": "^9.0.11",
-    "lint-staged": "^15.2.2",
-    "markdown-it-mathjax3": "^4.3.2",
-    "vitepress": "^1.6.3",
-    "vitepress-plugin-group-icons": "^1.3.8"
+    "lint-staged": "^15.2.2"
   },
   "scripts": {
     "deps": "npm run clean && pnpm install",
     "clean": "rm -rf node_modules ./*/*/node_modules",
-    "dev": "vite",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
-    "build": "vite build",
     "eslint": "eslint --ext .js,.mjs,.jsx,.ts,.tsx --fix --ignore-path .eslintignore ./",
-    "preview": "vite preview",
-    "test": "vitest run --coverage"
+    "build:all": "pnpm run --parallel --filter=./packages/* build",
+    "test:all": "pnpm run --parallel --filter=./packages/* test",
+    "release:all": "node ./release.mjs"
   },
-  "files": [
-    "dist"
-  ]
+  "dependencies": {
+    "cross-spawn": "^7.0.6",
+    "markdown-it-mathjax3": "^4.3.2",
+    "picocolors": "^1.0.0",
+    "undici": "^7.8.0",
+    "vitepress": "^1.6.3",
+    "vitepress-plugin-group-icons": "^1.3.8"
+  }
 }

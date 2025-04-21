@@ -1,58 +1,26 @@
-# create-vite-lib-starter
+# util
 
-[![NPM version](https://img.shields.io/npm/v/create-vite-lib-starter.svg?style=flat)](https://npmjs.org/package/create-vite-lib-starter)
-[![NPM Downloads](https://img.shields.io/npm/dm/create-vite-lib-starter.svg?style=flat)](https://npmjs.org/package/create-vite-lib-starter)
-[![Node version](https://img.shields.io/node/v/create-vite-lib-starter.svg?style=flat)](https://npmjs.org/package/create-vite-lib-starter)
-
-> Quickly generate a Vite library project template with basic configuration and development environment.
-
-## Usage
-
-Run in the terminal:
-
-```bash
-npm create vite-lib-starter@latest <project-name>
-```
-
-Example:
-
-```bash
-npm create vite-lib-starter@latest my-vite-lib
-```
-
-This will create a new directory named `my-vite-lib` in the current folder with the initialized project structure.
+> 一个轻量级、模块化的工具库集合，提供常见开发场景的实用函数，支持 TypeScript 和零依赖设计。
 
 ---
 
-## Quick Start
-
-1. **Navigate to the project directory:**
-   ```bash
-   cd my-vite-lib
-   ```
-
-2. **Start the development server:**
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   ```
-
-3. **Build for production:**
-   ```bash
-   npm run build
-   # or
-   yarn build
-   ```
-
-4. **Run tests:**
-   ```bash
-   npm test
-   # or
-   yarn test
-   ```
+## **特性**
+- **零依赖**：所有模块独立实现，无外部依赖
+- **TypeScript 支持**：完整类型定义文件
+- **浏览器兼容**：支持 ES5+ 环境（通过 UMD 构建）
+- **按需加载**：通过 ES Modules 按需引入单个函数
 
 ---
 
-## Notes
-- The project name must comply with **npm package name conventions** (lowercase letters, numbers, hyphens).
+## Contributing
+
+We welcome contributions from the community! If you find a bug or want to suggest an improvement, feel free to open an issue or submit a pull request.
+
+### How to Contribute
+1. Fork the repository.
+2. Create a new branch for your changes.
+3. Submit a pull request with a clear description of your changes.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).

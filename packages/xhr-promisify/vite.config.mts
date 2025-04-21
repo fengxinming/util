@@ -3,48 +3,44 @@ import { defineConfig } from 'vite';
 import pluginBuildChunk from 'vite-plugin-build-chunk';
 import pluginCombine from 'vite-plugin-combine';
 import pluginExternal from 'vite-plugin-external';
+import pluginSeparateImporter from 'vite-plugin-separate-importer';
 
 import { camelize } from '../camel-kit/src/camelize';
-import { name } from './package.json';
-
-const globalName = camelize(name, { pascalCase: true });
+import { dependencies, name } from './package.json';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     pluginCombine({
-      src: 'src/*.ts',
-      target: 'src/index.ts',
+      src: './src/*.ts',
+      target: './src/index.ts',
       exports: 'all'
     }),
     ts({
       tsconfig: './tsconfig.build.json'
     }),
     pluginExternal({
-      nodeBuiltins: true
+      externalizeDeps: Object.keys(dependencies)
+    }),
+    pluginSeparateImporter({
+      libs: [{
+        name: 'fast-qs',
+        importFrom(importer, libName) {
+          return {
+            es: `${libName}/dist/${importer}.mjs`,
+            cjs: `${libName}/dist/${importer}`
+          };
+        }
+      }]
     }),
     pluginBuildChunk({
       logLevel: 'TRACE',
-      build: [
-        {
-          chunk: 'index.mjs',
-          format: 'umd',
-          minify: false,
-          name: globalName
-        },
-        {
-          chunk: 'parse.mjs',
-          format: 'umd',
-          minify: false,
-          name: `${globalName}.parse`
-        },
-        {
-          chunk: 'Properties.mjs',
-          format: 'umd',
-          minify: false,
-          name: `${globalName}.Properties`
-        }
-      ]
+      build: {
+        chunk: 'index.mjs',
+        name: camelize(name, { pascalCase: true }),
+        format: 'umd',
+        minify: false
+      }
     })
   ],
   build: {
@@ -56,6 +52,6 @@ export default defineConfig({
     minify: false
   },
   test: {
-    dir: './test'
+    environment: 'jsdom'
   }
 });
