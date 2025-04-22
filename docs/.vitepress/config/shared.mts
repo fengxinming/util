@@ -55,7 +55,7 @@ export const shared = defineConfig({
 
   themeConfig: {
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/fengxinming/create-vite-lib-starter' }
+      { icon: 'github', link: 'https://github.com/fengxinming/util' }
     ]
   },
 
