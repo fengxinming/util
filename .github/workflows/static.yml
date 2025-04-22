@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
   
 env:
-  base_url: /vite-plugins/
+  base_url: /util/
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:

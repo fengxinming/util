@@ -11,7 +11,7 @@ export const zh = defineConfig({
     nav: [
       {
         text: '指南',
-        link: '/zh/guide/introduction',
+        link: '/zh/guide',
         activeMatch: '/zh/guide/'
       },
       {

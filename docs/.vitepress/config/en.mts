@@ -11,7 +11,7 @@ export const en = defineConfig({
     nav: [
       {
         text: 'Guide',
-        link: '/guide/introduction',
+        link: '/guide',
         activeMatch: '/guide/'
       },
       {

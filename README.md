@@ -1,14 +1,13 @@
-# util
+# **util**
 
-> 一个轻量级、模块化的工具库集合，提供常见开发场景的实用函数，支持 TypeScript 和零依赖设计。
+> A lightweight, modular collection of utility libraries providing practical functions for common development scenarios, with TypeScript support.
 
 ---
 
-## **特性**
-- **零依赖**：所有模块独立实现，无外部依赖
-- **TypeScript 支持**：完整类型定义文件
-- **浏览器兼容**：支持 ES5+ 环境（通过 UMD 构建）
-- **按需加载**：通过 ES Modules 按需引入单个函数
+## **Features**
+- **TypeScript Support**: Full type definition files included
+- **Browser Compatibility**: Supports ES5+ environments (via UMD builds)
+- **Tree-shaking Ready**: Import individual functions via ES Modules for on-demand usage
 
 ---
 

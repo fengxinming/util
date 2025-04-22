@@ -1,4 +1,4 @@
-# xhr-promisify
+# xhr-Promisify
 
 [![npm package](https://nodei.co/npm/xhr-promisify.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/xhr-promisify)
 
@@ -6,59 +6,71 @@
 [![NPM Downloads](https://img.shields.io/npm/dm/xhr-promisify.svg?style=flat)](https://npmjs.org/package/xhr-promisify)
 [![jsdelivr](https://data.jsdelivr.com/v1/package/npm/xhr-promisify/badge)](https://www.jsdelivr.com/package/npm/xhr-promisify)
 
-以下是为 `xhr-promisify` 项目生成的 Markdown 文档模板，结合 GitHub 常见规范设计：
+> **A lightweight Promise-based XHR library** that wraps traditional `XMLHttpRequest` into a Promise interface to simplify asynchronous request development.
 
 ---
 
-```markdown
-# XHR-Promisify
+## **Installation**
 
-[![npm package](https://nodei.co/npm/xhr-promisify.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/xhr-promisify)
+::: code-group
 
-[![NPM version](https://img.shields.io/npm/v/xhr-promisify.svg?style=flat)](https://npmjs.org/package/xhr-promisify)
-[![NPM Downloads](https://img.shields.io/npm/dm/xhr-promisify.svg?style=flat)](https://npmjs.org/package/xhr-promisify)
-
-**轻量级的 Promise 化 XHR 工具库**，将传统的 `XMLHttpRequest` 封装为 Promise 接口，简化异步请求开发。
-
----
-
-## **特性**
-- **Promise 接口**：支持 `async/await` 和 `.then()` 链式调用
-- **错误处理**：标准化错误类型（如超时、网络错误、HTTP 状态码异常）
-- **零依赖**：仅需 ~2KB（gzip 压缩后）
-- **浏览器兼容**：支持 IE11+ 及现代浏览器
-
----
-
-## **安装**
-```bash
-npm install xhr-promisify
-# 或
-yarn add xhr-promisify
-# 或
+```bash [npm]
+npm add xhr-promisify
+```
+```bash [pnpm]
 pnpm add xhr-promisify
 ```
+```bash [yarn]
+yarn add xhr-promisify
+```
+```html [html]
+<script src="https://cdn.jsdelivr.net/npm/xhr-promisify/dist/index.umd.min.js"></script>
+<script>
+  const { ajax } = XhrPromisify;
+  // GET request
+  ajax({
+    url: 'https://api.example.com/data',
+    method: 'GET'
+  })
+  .then(response => {
+    console.log('Response data:', response);
+  })
+  .catch(error => {
+    console.error('Request failed:', error);
+  });
+</script>
+```
+
+:::
 
 ---
 
-## **快速上手**
-### 基础用法
+## Documentation
+
+For detailed usage instructions and API references, please visit the official documentation:
+
+👉 [View Full Documentation](https://fengxinming.github.io/util/modules/xhr-Promisify/)
+
+---
+
+## **Quick Start**
+### Basic Usage
 ```javascript
 import { ajax } from 'xhr-promisify';
 
-// GET 请求
+// GET request
 ajax({
   url: 'https://api.example.com/data',
   method: 'GET'
 })
 .then(response => {
-  console.log('响应数据:', response);
+  console.log('Response data:', response);
 })
 .catch(error => {
-  console.error('请求失败:', error);
+  console.error('Request failed:', error);
 });
 
-// 简洁写法（async/await）
+// Simplified syntax (async/await)
 async function fetchData() {
   try {
     const response = await ajax({ url: '/api/data' });
@@ -71,43 +83,8 @@ async function fetchData() {
 
 ---
 
-## **API 文档**
-### `ajax(options: XhrOptions): Promise<XhrResponse>`
-发送 HTTP 请求并返回 Promise。
-
-#### 参数
-| 参数名 | 类型 | 必填 | 说明 |
-|--------|------|------|------|
-| `url` | `string` | 是 | 请求地址 |
-| `method` | `string` | 否 | 请求方法（默认 `GET`） |
-| `data` | `object` | 否 | POST/PUT 等请求的请求体（自动序列化为 JSON） |
-| `timeout` | `number` | 否 | 超时时间（毫秒，默认 `30000`） |
-| `headers` | `object` | 否 | 自定义请求头 |
-
-#### 返回值
-成功时返回 `XhrResponse` 对象：
-```typescript
-interface XhrResponse {
-  status: number; // HTTP 状态码
-  statusText: string;
-  headers: Record<string, string>;
-  data: any; // 解析后的响应数据（自动 JSON 解析）
-}
-```
-
-#### 错误类型
-| 错误代码 | 类型 | 描述 |
-|----------|------|------|
-| `ABORT_ERR` | `XhrError` | 请求被手动中止 |
-| `ERR_NETWORK` | `XhrError` | 网络错误（如 DNS 解析失败） |
-| `ERR_HTTP_REQUEST_TIMEOUT` | `XhrError` | 请求超时 |
-| `ERR_BAD_REQUEST` | `XhrError` | HTTP 状态码 4xx 错误 |
-| `ERR_BAD_RESPONSE` | `XhrError` | HTTP 状态码 5xx 错误 |
-
----
-
-## **高级用法**
-### 中止请求
+## **Advanced Usage**
+### Abort Requests
 ```javascript
 const controller = new AbortController();
 const { signal } = controller;
@@ -117,11 +94,11 @@ ajax({
   signal
 }).then(...);
 
-// 主动中止请求
+// Abort the request manually
 controller.abort();
 ```
 
-### 自定义请求头
+### Custom Headers
 ```javascript
 ajax({
   url: '/api/protected',
@@ -133,36 +110,31 @@ ajax({
 
 ---
 
-## **错误处理**
-所有异常均抛出 `XhrError` 对象，包含以下属性：
+## **Error Handling**
+All exceptions throw an `AjaxError` object with the following properties:
 ```typescript
-class XhrError extends Error {
-  code: string; // 错误代码（如 `ERR_NETWORK`）
-  status?: number; // HTTP 状态码（若适用）
-  response?: XhrResponse; // 原始响应对象（若适用）
+class AjaxError extends Error {
+  code: string; // Error code (e.g., `ERR_NETWORK`)
+  status?: number; // HTTP status code (if available)
+  statusText?: string; // HTTP status text (if available)
+  data?: any; // Response data (if available)
+  request?: XMLHttpRequest; // Original request object (if available)
 }
 ```
 
----
-
-## **浏览器支持**
-| 浏览器 | 支持版本 |
-|--------|----------|
-| Chrome | 最新版本 ✔ |
-| Firefox | 最新版本 ✔ |
-| Safari | 最新版本 ✔ |
-| Edge | 最新版本 ✔ |
-| IE | IE11+ ✔ |
+### **Error Types**
+| Error Code | Type | Description |
+|------------|------|-------------|
+| `ABORT_ERR` | `AjaxError` | Request was manually aborted |
+| `ERR_NETWORK` | `AjaxError` | Network error (e.g., DNS resolution failure) |
+| `ERR_HTTP_REQUEST_TIMEOUT` | `AjaxError` | Request timeout |
+| `ERR_BAD_REQUEST` | `AjaxError` | HTTP 4xx status code error |
+| `ERR_BAD_RESPONSE` | `AjaxError` | HTTP 5xx status code error |
 
 ---
 
-## **贡献指南**
-1. Fork 本仓库并创建新分支
-2. 实现新功能或修复问题
-3. 确保通过所有单元测试
-4. 提交 Pull Request
+## **Browser Support**
 
----
-
-## **许可证**
-MIT License
+![Chrome](https://raw.github.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/src/safari/safari_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/src/opera/opera_48x48.png) | ![Edge](https://raw.github.com/alrra/browser-logos/master/src/edge/edge_48x48.png) |
+--- | --- | --- | --- | --- |
+Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |

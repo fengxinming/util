@@ -34,7 +34,7 @@ bun add is-what-type
 
 For detailed usage instructions and API references, please visit the official documentation:
 
-👉 [View Full Documentation](https://fengxinming.github.io/is-what-type/)
+👉 [View Full Documentation](https://fengxinming.github.io/util/modules/is-what-type/)
 
 ## Contributing
 

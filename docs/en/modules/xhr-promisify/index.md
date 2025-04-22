@@ -6,7 +6,7 @@
 [![NPM Downloads](https://img.shields.io/npm/dm/xhr-promisify.svg?style=flat)](https://npmjs.org/package/xhr-promisify)
 [![jsdelivr](https://data.jsdelivr.com/v1/package/npm/xhr-promisify/badge)](https://www.jsdelivr.com/package/npm/xhr-promisify)
 
-**A lightweight Promise-based XHR library** that wraps traditional `XMLHttpRequest` into a Promise interface to simplify asynchronous request development.
+> **A lightweight Promise-based XHR library** that wraps traditional `XMLHttpRequest` into a Promise interface to simplify asynchronous request development.
 
 ---
 
