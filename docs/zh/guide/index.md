@@ -6,6 +6,8 @@
 
 * [camel-kit](/zh/modules/camel-kit/) - **驼峰转换工具库**：支持 **驼峰命名（camelCase）** 与 **下划线命名（snake_case）** 的双向转换，功能丰富且轻量级。
 
+* [date-manip](/zh/modules/date-manip/) - **日期操作工具库**：一个轻量级的日期工具库，旨在提供模块化、高性能和额外功能。它支持多种日期操作，包括日期的增减、格式化、比较等。
+
 * [is-what-type](/zh/modules/is-what-type/) - **类型检测工具库**：一个简单易用的类型检查工具库。
 
 * [properties-like](/zh/modules/properties-like/) - **Java Properties 实现库**：基于 TypeScript 实现 Java [`.properties` 规范](https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/Properties.html#load(java.io.Reader))，支持配置文件解析、序列化、变量插值及 Unicode 处理等高级功能。

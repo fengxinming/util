@@ -1,0 +1,43 @@
+{
+  "name": "eemitt",
+  "version": "3.0.0",
+  "description": "A lightweight, TypeScript-native event emitter library supporting modular event listeners, one-time triggers, propagation control, and more.",
+  "types": "dist/index.d.ts",
+  "module": "dist/index.mjs",
+  "main": "dist/index.js",
+  "unpkg": "dist/index.umd.js",
+  "jsdelivr": "dist/index.umd.js",
+  "scripts": {
+    "build": "vite build",
+    "prepublishOnly": "npm run build",
+    "release": "pnpm publish --no-git-checks",
+    "test": "vitest run --coverage"
+  },
+  "keywords": [
+    "events",
+    "emitter"
+  ],
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^12.1.2",
+    "@vitest/coverage-v8": "^3.1.1",
+    "vite": "^6.2.6",
+    "vite-plugin-build-chunk": "^6.0.0",
+    "vitest": "^3.1.1"
+  },
+  "files": [
+    "dist"
+  ],
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/fengxinming/util.git"
+  },
+  "author": "Jesse Feng <fxm0016@126.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fengxinming/util/issues"
+  },
+  "homepage": "https://fengxinming.github.io/util/modules/eemitt/"
+}

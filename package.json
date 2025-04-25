@@ -20,13 +20,14 @@
     "prepare": "husky install",
     "eslint": "eslint --ext .js,.mjs,.jsx,.ts,.tsx --fix --ignore-path .eslintignore ./",
     "build:all": "pnpm run --parallel --filter=./packages/* build",
-    "test:all": "pnpm run --parallel --filter=./packages/* test",
+    "test:all": "npm run build:all && pnpm run --parallel --filter=./packages/* test",
     "release:all": "node ./release.mjs"
   },
   "dependencies": {
+    "@types/debug": "^4.1.12",
     "cross-spawn": "^7.0.6",
+    "debug": "^4.4.0",
     "markdown-it-mathjax3": "^4.3.2",
-    "picocolors": "^1.0.0",
     "undici": "^7.8.0",
     "vitepress": "^1.6.3",
     "vitepress-plugin-group-icons": "^1.3.8"

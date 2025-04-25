@@ -4,42 +4,25 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { spawn } from 'cross-spawn';
-import picocolors from 'picocolors';
+import createDebug from 'debug';
 import { request } from 'undici';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-
-const recordMap = new Map();
-class Info {
-  constructor(name) {
-    this.messages = [];
-    this.name = name;
-  }
-  info(message) {
-    this.messages.push(picocolors.green(`[${this.name}] - ${message}`));
-  }
-  error(message) {
-    this.messages.push(picocolors.red(`[${this.name}] - ${message}`));
-  }
-}
 
 async function getLatestVersion(pkgName) {
   const { body } = await request(`https://registry.npmjs.org/${pkgName}`);
 
   const pkg = await body.json();
   if (pkg.error) {
-    recordMap.get(pkgName).error(`Package '${pkgName}' not found!`);
     return null;
   }
   const { latest } = pkg['dist-tags'];
-  recordMap.get(pkgName).info(`Latest version is '${latest}'.`);
   return latest;
 }
 
-function release(pkg, currentDir) {
+function release(name, currentDir) {
   return new Promise((resolve, reject) => {
-    const { name } = pkg;
     const tag = /\d+\.\d+\.\d+-([a-z]+)\.\d+/.exec(name);
     const args = [
       'publish',
@@ -60,7 +43,6 @@ function release(pkg, currentDir) {
     });
     child.on('close', (code) => {
       if (code === 0) {
-        recordMap.get(name).info(`'${name}@${pkg.version}' released successfully!`);
         resolve();
       }
       else {
@@ -72,32 +54,46 @@ function release(pkg, currentDir) {
 async function run() {
   const packagesDir = join(__dirname, 'packages');
   return Promise.all(
-    (await readdir(packagesDir)).map((pkgName) => (async () => {
-      const info = new Info(pkgName);
-      recordMap.set(pkgName, info);
+    (await readdir(packagesDir)).map((dirName) => (async () => {
+      const packageDir = join(packagesDir, dirName);
+      const pkgPath = join(packageDir, 'package.json');
+      const { name: pkgName, version } = JSON.parse(await readFile(pkgPath, 'utf-8'));
+
+      const debug = createDebug(pkgName);
+      debug.enabled = true;
 
       const latestVersion = await getLatestVersion(pkgName);
-      const packageDir = join(packagesDir, pkgName);
-      const pkgPath = join(packageDir, 'package.json');
-      const pkg = JSON.parse(await readFile(pkgPath, 'utf-8'));
-
-      if (pkg.version !== latestVersion) {
-        info.info(`Start to release '${pkgName}'...`);
-        await release(pkg, packageDir);
+      if (latestVersion === null) {
+        debug(`Package '${pkgName}' not found!`);
       }
       else {
-        info.info(`'${pkgName}@${pkg.version}' is up to date!`);
+        debug(`Latest version is '${latestVersion}'.`);
       }
 
-      return info;
+      return { name: pkgName, dir: packageDir, version, latestVersion, debug };
     })())
-  );
+  ).then(async (arr) => {
+    const messages = [];
+    for (const { name, dir, version, latestVersion, debug } of arr) {
+      if (version !== latestVersion) {
+        debug(`Start to release '${name}'...`);
+        await release(name, dir);
+        messages.push(`'${name}@${version}' released successfully!`);
+      }
+      else {
+        messages.push(`'${name}@${version}' is up to date!`);
+      }
+    }
+    return messages;
+  });
 }
 
 run().then(
-  (infos) => {
-    for (const info of infos) {
-      console.info(info.messages.join(EOL) + EOL);
-    }
+  (messages) => {
+    console.info(messages.join(EOL) + EOL);
+  },
+  (err) => {
+    console.error(err);
+    throw err;
   }
 );

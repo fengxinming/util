@@ -117,6 +117,10 @@ function pushSidebar(
 
       sidebar[nextBase] = item;
       pushSidebar(join(dir, file), nextBase, sidebar);
+
+      if (subItem.items!.length === 0) {
+        delete sidebar[nextBase];
+      }
     }
   });
 }
