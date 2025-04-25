@@ -30,23 +30,13 @@ function release(name, currentDir) {
       '--tag',
       tag ? tag[1] : 'latest'
     ];
-    const child = spawn('pnpm', args, { cwd: currentDir });
-    let err = '';
-    child.stderr.on('data', (data) => {
-      err += data;
-    });
-    child.stderr.on('error', (err) => {
-      reject(err);
-    });
-    child.on('error', (err) => {
-      reject(err);
-    });
+    const child = spawn('pnpm', args, { cwd: currentDir, stdio: 'inherit' });
     child.on('close', (code) => {
       if (code === 0) {
         resolve();
       }
       else {
-        reject(new Error(`'${name}' release failed! ${code}${EOL}${err}`));
+        reject(new Error(`'${name}' release failed! ${code}`));
       }
     });
   });
@@ -54,24 +44,26 @@ function release(name, currentDir) {
 async function run() {
   const packagesDir = join(__dirname, 'packages');
   return Promise.all(
-    (await readdir(packagesDir)).map((dirName) => (async () => {
-      const packageDir = join(packagesDir, dirName);
-      const pkgPath = join(packageDir, 'package.json');
-      const { name: pkgName, version } = JSON.parse(await readFile(pkgPath, 'utf-8'));
+    (await readdir(packagesDir)).map((dirName) =>
+      (async () => {
+        const packageDir = join(packagesDir, dirName);
+        const pkgPath = join(packageDir, 'package.json');
+        const { name: pkgName, version } = JSON.parse(await readFile(pkgPath, 'utf-8'));
 
-      const debug = createDebug(pkgName);
-      debug.enabled = true;
+        const debug = createDebug(pkgName);
+        debug.enabled = true;
 
-      const latestVersion = await getLatestVersion(pkgName);
-      if (latestVersion === null) {
-        debug(`Package '${pkgName}' not found!`);
-      }
-      else {
-        debug(`Latest version is '${latestVersion}'.`);
-      }
+        const latestVersion = await getLatestVersion(pkgName);
+        if (latestVersion === null) {
+          debug(`Package '${pkgName}' not found!`);
+        }
+        else {
+          debug(`Latest version is '${latestVersion}'.`);
+        }
 
-      return { name: pkgName, dir: packageDir, version, latestVersion, debug };
-    })())
+        return { name: pkgName, dir: packageDir, version, latestVersion, debug };
+      })()
+    )
   ).then(async (arr) => {
     const messages = [];
     for (const { name, dir, version, latestVersion, debug } of arr) {
@@ -90,7 +82,7 @@ async function run() {
 
 run().then(
   (messages) => {
-    console.info(messages.join(EOL) + EOL);
+    console.info(EOL + messages.join(EOL) + EOL);
   },
   (err) => {
     console.error(err);
