@@ -1,5 +1,3 @@
-import { isNumber, isObject } from 'is-what-type';
-
 import autoExtract from './_internal/autoExtract';
 import createFromArray from './_internal/createFromArray';
 import extractWithFormat from './_internal/extractWithFormat';
@@ -10,6 +8,10 @@ import units from './units';
 const { DATE, DAY, HOUR, MILLISECOND, MINUTE, MONTH, SECOND, YEAR, UTC_OFFSET } = units;
 
 const ASP_NET_JSON_REGEX = /^\/?Date\((-?\d+)/i;
+
+function ensureType<T = unknown>(value: unknown, checked: boolean): value is T {
+  return checked;
+}
 
 function parseObject(obj: DateParsingObject): Date {
   const array: number[] = [];
@@ -101,8 +103,9 @@ function parseString(input: string, format?: string): Date {
  */
 export default function parse(input: DateInput | {isValid: () => any}, format?: string): Date {
   let ret: Date;
+  const whatType = typeof input;
 
-  if (typeof input === 'string') {
+  if (ensureType<string>(input, whatType === 'string')) {
     ret = parseString(input, format);
   }
   else if (Array.isArray(input)) {
@@ -111,7 +114,7 @@ export default function parse(input: DateInput | {isValid: () => any}, format?: 
   else if (input instanceof Date) {
     ret = new Date(input);
   }
-  else if (isObject(input)) {
+  else if (ensureType<object>(input, whatType === 'object' && input !== null)) {
     if ((input as any).isValid && (input as any).isValid()) {
       ret = new Date(+input);
     }
@@ -119,10 +122,10 @@ export default function parse(input: DateInput | {isValid: () => any}, format?: 
       ret = parseObject(input as DateParsingObject);
     }
   }
-  else if (isNumber(input)) {
+  else if (ensureType<number>(input, whatType === 'number')) {
     ret = new Date(input);
   }
-  else if (typeof input === 'undefined') {
+  else if (ensureType<undefined>(input, whatType === 'undefined')) {
     ret = format ? new Date(NaN) : new Date();
   }
   else {

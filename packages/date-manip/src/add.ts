@@ -1,5 +1,3 @@
-import { isObject } from 'is-what-type';
-
 import addNumber from './_internal/addNumber';
 import addObject from './_internal/addObject';
 import { DateAddingObject, Unit } from './types';
@@ -31,7 +29,7 @@ export default function add(date: Date, num: number, unit: Unit): Date;
  * ```
  */
 export default function add(date: Date, num: number | DateAddingObject, unit?: Unit): Date {
-  return isObject(num)
+  return typeof num === 'object' && num !== null
     ? addObject(date, num, 1)
     : addNumber(date, num, unit as Unit);
 }

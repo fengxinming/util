@@ -1,4 +1,3 @@
-import ts from '@rollup/plugin-typescript';
 import { defineConfig } from 'vite';
 import pluginBuildChuck from 'vite-plugin-build-chunk';
 import pluginCombine from 'vite-plugin-combine';
@@ -10,12 +9,10 @@ import { name } from './package.json';
 export default defineConfig({
   plugins: [
     pluginCombine({
-      src: ['src/*.ts', '!src/types.ts'],
+      src: 'src/*.ts',
       target: 'src/index.ts',
-      exports: 'all'
-    }),
-    ts({
-      tsconfig: './tsconfig.build.json'
+      exports: 'all',
+      dts: true
     }),
     pluginBuildChuck({
       build: {

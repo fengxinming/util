@@ -8,7 +8,7 @@ hero:
   tagline: 提供常见开发场景的实用函数，支持 TypeScript。
   actions:
     - theme: brand
-      text: 指南
+      text: 指引
       link: /guide
     # - theme: alt
     #   text: API 示例

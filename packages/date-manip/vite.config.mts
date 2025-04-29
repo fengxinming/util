@@ -1,4 +1,3 @@
-import ts from '@rollup/plugin-typescript';
 import { defineConfig } from 'vite';
 import pluginBuildChuck from 'vite-plugin-build-chunk';
 import pluginCombine from 'vite-plugin-combine';
@@ -6,20 +5,23 @@ import pluginExternal from 'vite-plugin-external';
 import pluginSeparateImporter from 'vite-plugin-separate-importer';
 
 import { camelize } from '../camel-kit/src/camelize';
-import { dependencies, name } from './package.json';
+import { name } from './package.json';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     pluginExternal({
       nodeBuiltins: true,
-      externalizeDeps: Object.keys(dependencies).concat(name)
+      externalizeDeps: [name]
     }),
     pluginCombine({
       src: ['src/*.ts', '!src/{chain,types}.ts'],
       target: 'src/index.ts',
       beforeWrite(code: string) {
         return `${code}export * from './types';`;
+      },
+      dts: {
+        include: 'src/*.ts'
       }
     }),
     pluginSeparateImporter({
@@ -33,9 +35,6 @@ export default defineConfig({
           };
         }
       }]
-    }),
-    ts({
-      tsconfig: './tsconfig.build.json'
     }),
     pluginBuildChuck({
       build: [{
