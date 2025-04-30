@@ -3,26 +3,25 @@
 layout: home
 
 hero:
-  name: Javascript 工具集合
-  text: 这里是描述
-  tagline: 这里是标语
+  name: util
+  text: 一个轻量级、模块化的工具库集合
+  tagline: 提供常见开发场景的实用函数，支持 TypeScript。
   actions:
     - theme: brand
-      text: 介绍
-      link: /zh/guide/introduction
+      text: 指引
+      link: /guide
     # - theme: alt
     #   text: API 示例
-    #   link: /zh/api
+    #   link: /api/entry
   image:
     src: https://vitepress.dev/vitepress-logo-large.svg
     alt: create-vite-lib-starter
 
-# features:
-#   - title: Feature A
-#     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-#   - title: Feature B
-#     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-#   - title: Feature C
-#     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+features:
+  - title: TypeScript 支持
+    details: 包含完整的类型定义文件
+  - title: 浏览器兼容性
+    details: 支持 ES5+ 环境（通过 UMD 构建）
+  - title: 支持按需加载
+    details: 通过 ES 模块按需导入单个函数
 ---
-

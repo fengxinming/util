@@ -1,4 +1,5 @@
 import { readdirSync, readFileSync } from 'node:fs';
+import { EOL } from 'node:os';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -54,7 +55,7 @@ export const shared = defineConfig({
 
   themeConfig: {
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/fengxinming/create-vite-lib-starter' }
+      { icon: 'github', link: 'https://github.com/fengxinming/util' }
     ]
   },
 
@@ -87,14 +88,16 @@ function pushSidebar(
 
     if (file.endsWith('.md')) {
       sidebar[base].items![0].items!.push({
-        text: new RegExp('^#\\s+\\**([^*]+)\\**\\n').exec(readFileSync(join(dir, file), 'utf8'))![1],
+        text: new RegExp(`#\\s+\\**([^*${EOL}]+)\\**\\${EOL}`)
+          .exec(readFileSync(join(dir, file), 'utf8'))![1],
         link: file.replace(/\.md$/, '')
       });
     }
     else {
-      let text;
+      let text: string | null = null;
       try {
-        text = new RegExp('^#\\s+\\**([^*]+)\\**\\n').exec(readFileSync(join(dir, file, 'index.md'), 'utf8'))![1];
+        text = new RegExp(`#\\s+\\**([^*${EOL}]+)\\**\\${EOL}`)
+          .exec(readFileSync(join(dir, file, 'index.md'), 'utf8'))![1];
       }
       catch (e) { }
 
@@ -114,6 +117,10 @@ function pushSidebar(
 
       sidebar[nextBase] = item;
       pushSidebar(join(dir, file), nextBase, sidebar);
+
+      if (subItem.items!.length === 0) {
+        delete sidebar[nextBase];
+      }
     }
   });
 }

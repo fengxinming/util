@@ -1,58 +1,25 @@
-# create-vite-lib-starter
+# **util**
 
-[![NPM version](https://img.shields.io/npm/v/create-vite-lib-starter.svg?style=flat)](https://npmjs.org/package/create-vite-lib-starter)
-[![NPM Downloads](https://img.shields.io/npm/dm/create-vite-lib-starter.svg?style=flat)](https://npmjs.org/package/create-vite-lib-starter)
-[![Node version](https://img.shields.io/node/v/create-vite-lib-starter.svg?style=flat)](https://npmjs.org/package/create-vite-lib-starter)
-
-> Quickly generate a Vite library project template with basic configuration and development environment.
-
-## Usage
-
-Run in the terminal:
-
-```bash
-npm create vite-lib-starter@latest <project-name>
-```
-
-Example:
-
-```bash
-npm create vite-lib-starter@latest my-vite-lib
-```
-
-This will create a new directory named `my-vite-lib` in the current folder with the initialized project structure.
+> A lightweight, modular collection of utility libraries providing practical functions for common development scenarios, with TypeScript support.
 
 ---
 
-## Quick Start
-
-1. **Navigate to the project directory:**
-   ```bash
-   cd my-vite-lib
-   ```
-
-2. **Start the development server:**
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   ```
-
-3. **Build for production:**
-   ```bash
-   npm run build
-   # or
-   yarn build
-   ```
-
-4. **Run tests:**
-   ```bash
-   npm test
-   # or
-   yarn test
-   ```
+## **Features**
+- **TypeScript Support**: Full type definition files included
+- **Browser Compatibility**: Supports ES5+ environments (via UMD builds)
+- **Tree-shaking Ready**: Import individual functions via ES Modules for on-demand usage
 
 ---
 
-## Notes
-- The project name must comply with **npm package name conventions** (lowercase letters, numbers, hyphens).
+## Contributing
+
+We welcome contributions from the community! If you find a bug or want to suggest an improvement, feel free to open an issue or submit a pull request.
+
+### How to Contribute
+1. Fork the repository.
+2. Create a new branch for your changes.
+3. Submit a pull request with a clear description of your changes.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).

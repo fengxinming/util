@@ -4,14 +4,14 @@ import { createNavItems, createSidebar } from './shared.mjs';
 
 // https://vitepress.dev/reference/site-config
 export const zh = defineConfig({
-  description: '一个包含多个自定义插件的集合，用于增强 Vite 构建工具的功能。',
+  description: '一个轻量级、模块化的工具库集合，提供常见开发场景的实用函数，支持 TypeScript。',
   lang: 'zh-CN',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       {
-        text: '指南',
-        link: '/zh/guide/introduction',
+        text: '指引',
+        link: '/zh/guide',
         activeMatch: '/zh/guide/'
       },
       {
@@ -26,7 +26,7 @@ export const zh = defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/fengxinming/create-vite-lib-starter.git' }
+      { icon: 'github', link: 'https://github.com/fengxinming/util' }
     ]
   }
 });

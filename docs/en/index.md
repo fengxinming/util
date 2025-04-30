@@ -3,26 +3,26 @@
 layout: home
 
 hero:
-  name: create-vite-lib-starter
-  text: Here is description.
-  tagline: Here is tagline!
+  name: util
+  text: A lightweight, modular collection of utility libraries
+  tagline: Providing practical functions for common development scenarios, with TypeScript support.
   actions:
     - theme: brand
-      text: Introduction
-      link: /guide/introduction
-    - theme: alt
-      text: API Examples
-      link: /api/entry
+      text: Guide
+      link: /guide
+    # - theme: alt
+    #   text: API Examples
+    #   link: /api/entry
   image:
     src: https://vitepress.dev/vitepress-logo-large.svg
     alt: create-vite-lib-starter
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: TypeScript Support
+    details: Full type definition files included
+  - title: Browser Compatibility
+    details: Supports ES5+ environments (via UMD builds)
+  - title: Tree-shaking Ready
+    details: Import individual functions via ES Modules for on-demand usage
 ---
 

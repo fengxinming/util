@@ -1,13 +1,12 @@
-import ts from '@rollup/plugin-typescript';
-import camelcase from 'camelcase';
 import { defineConfig } from 'vite';
 import pluginBuildChunk from 'vite-plugin-build-chunk';
 import pluginCombine from 'vite-plugin-combine';
 import pluginExternal from 'vite-plugin-external';
 
+import { camelize } from '../camel-kit/src/camelize';
 import { name } from './package.json';
 
-const globalName = camelcase(name, { pascalCase: true });
+const globalName = camelize(name, { pascalCase: true });
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -15,10 +14,8 @@ export default defineConfig({
     pluginCombine({
       src: 'src/*.ts',
       target: 'src/index.ts',
-      exports: 'all'
-    }),
-    ts({
-      tsconfig: './tsconfig.build.json'
+      exports: 'all',
+      dts: true
     }),
     pluginExternal({
       nodeBuiltins: true
