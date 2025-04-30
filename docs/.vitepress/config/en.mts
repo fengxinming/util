@@ -10,11 +10,11 @@ export const en = defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      {
-        text: 'Guide',
-        link: '/guide',
-        activeMatch: '/guide/'
-      },
+      // {
+      //   text: 'Guide',
+      //   link: '/guide',
+      //   activeMatch: '/guide/'
+      // },
       {
         text: 'Modules',
         activeMatch: '/modules/',
