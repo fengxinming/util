@@ -19,7 +19,8 @@
     "docs:preview": "vitepress preview docs",
     "eslint": "eslint --ext .js,.mjs,.jsx,.ts,.tsx --fix --ignore-path .eslintignore ./",
     "build:all": "pnpm run --parallel --filter=./packages/* build",
-    "test:all": "npm run build:all && pnpm run --parallel --filter=./packages/* test",
+    "build:deps": "pnpm run --parallel --filter=xhr-promisify^... --filter=date-manip build",
+    "test:all": "npm run build:deps && pnpm run --parallel --filter=./packages/* test",
     "release:all": "node ./release.mjs",
     "prepare": "husky"
   },
@@ -31,5 +32,15 @@
     "undici": "^7.8.0",
     "vitepress": "^1.6.3",
     "vitepress-plugin-group-icons": "^1.3.8"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/fengxinming/util.git"
+  },
+  "author": "Jesse Feng <fxm0016@126.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fengxinming/util/issues"
+  },
+  "homepage": "https://fengxinming.github.io/util/"
 }

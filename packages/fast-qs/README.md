@@ -1,4 +1,4 @@
-# fast-qs
+# **fast-qs**
 
 [![npm package](https://nodei.co/npm/fast-qs.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/fast-qs)
 
@@ -18,7 +18,7 @@ For detailed usage instructions and API references, please visit the official do
 
 ---
 
-## Quick Start
+## **Quick Start**
 
 ```typescript
 import { parse, stringify } from 'fast-qs';
@@ -34,7 +34,7 @@ console.log(query); // → "city=New%20York&country=USA"
 
 ---
 
-## Core Features
+## **Core Features**
 
 ### ⚡ Key Features
 | Feature                | Description                                                                 |
