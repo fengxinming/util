@@ -9,11 +9,11 @@ export const zh = defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      {
-        text: '指引',
-        link: '/zh/guide',
-        activeMatch: '/zh/guide/'
-      },
+      // {
+      //   text: '指引',
+      //   link: '/zh/guide',
+      //   activeMatch: '/zh/guide/'
+      // },
       {
         text: '模块列表',
         activeMatch: '/zh/modules/',
