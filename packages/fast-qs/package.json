@@ -38,7 +38,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/fengxinming/util.git"
+    "url": "git+ssh://git@github.com/fengxinming/util.git",
+    "directory": "packages/fast-qs"
   },
   "author": "Jesse Feng <fxm0016@126.com>",
   "license": "MIT",
