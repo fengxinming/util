@@ -34,7 +34,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/fengxinming/util.git"
+    "url": "git+ssh://git@github.com/fengxinming/util.git",
+    "directory": "packages/camel-kit"
   },
   "author": "Jesse Feng <fxm0016@126.com>",
   "license": "MIT",
