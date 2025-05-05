@@ -2,8 +2,8 @@ import { describe, expect, it } from 'vitest';
 
 // import encode from '../../fast-qs/src/escape';
 // import decode from '../../fast-qs/src/unescape';
-import escape from '../src/escape';
-import unescape from '../src/unescape';
+import { escape } from '../src/escape';
+import { unescape } from '../src/unescape';
 
 describe('URI Escapify', () => {
   describe('escape', () => {

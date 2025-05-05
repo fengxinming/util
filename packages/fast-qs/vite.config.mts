@@ -9,14 +9,11 @@ import { name } from './package.json';
 export default defineConfig({
   plugins: [
     pluginCombine({
-      src: ['src/*.ts', '!src/types.ts'],
+      src: 'src/*.ts',
       target: 'src/index.ts',
-      beforeWrite(code: string) {
-        return `${code}export * from './types';`;
-      },
-      dts: {
-        include: 'src/*.ts'
-      }
+      exports: 'all',
+      dts: true,
+      logLevel: 'TRACE'
     }),
     pluginBuildChuck({
       build: {
@@ -36,6 +33,6 @@ export default defineConfig({
     minify: false
   },
   test: {
-    dir: 'test'
+    dir: './test'
   }
 });

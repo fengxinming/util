@@ -27,5 +27,8 @@ export default defineConfig({
       fileName: '[name]'
     },
     minify: false
+  },
+  test: {
+    dir: './test'
   }
 });

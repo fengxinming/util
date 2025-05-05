@@ -23,7 +23,7 @@ const noEscape = new Int8Array([
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0 // 112 - 127
 ]);
 
-function escape(str: string): string {
+export function escape(str: string): string {
   str = String(str);
 
   const len = str.length;
@@ -102,5 +102,3 @@ function escape(str: string): string {
   }
   return out;
 }
-
-export default escape;

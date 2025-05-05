@@ -29,6 +29,6 @@ export default defineConfig({
     minify: false
   },
   test: {
-    dir: 'test'
+    dir: './test'
   }
 });

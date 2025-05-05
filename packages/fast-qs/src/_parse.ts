@@ -36,7 +36,7 @@ function replaceAll(
  * @hidden
  */
 // eslint-disable-next-line max-params
-export default function parseQuery(
+export function _parse(
   input: string,
   start: number,
   length: number,

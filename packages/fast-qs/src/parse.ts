@@ -1,6 +1,13 @@
-import parseQuery from './_parse';
-import type { ParseOptions } from './types';
-import unescape from './unescape';
+import { _parse as parseQuery } from './_parse';
+import { unescape } from './unescape';
+
+export interface ParseOptions {
+  sep?: string;
+  eq?: string;
+  decodeURIComponent?: (str: string) => string;
+  filter?: (key: string, val: any) => any;
+  start?: number | string;
+}
 
 /**
  * 将 URL 查询字符串 str 解析为键值对的集合
@@ -13,7 +20,7 @@ import unescape from './unescape';
  * @param options 可选
  * @returns object对象
  */
-export default function parse(
+export function parse(
   str: string,
   options?: ParseOptions
 ): Record<string, string | string[]> {
