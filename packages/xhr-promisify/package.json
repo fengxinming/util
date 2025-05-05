@@ -1,6 +1,6 @@
 {
   "name": "xhr-promisify",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "This module provides a Promise-based HTTP request wrapper with support for asynchronous operations and common error handling scenarios.",
   "types": "dist/index.d.ts",
   "module": "dist/index.mjs",

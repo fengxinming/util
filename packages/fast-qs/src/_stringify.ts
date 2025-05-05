@@ -26,7 +26,7 @@ function convert(v: any, encode: (str: string) => string): string {
 /**
  * @hidden
  */
-export default function stringifyQuery(
+export function _stringify(
   obj: Record<string, any>,
   sep: string,
   eq: string,

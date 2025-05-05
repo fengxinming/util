@@ -66,7 +66,7 @@ function hexCodeToInt(char: string, shift: number): number {
   return i === void 0 ? 255 : i << shift;
 }
 
-function unescape(str: string): string {
+export function unescape(str: string): string {
   str = String(str);
 
   let percentPosition = str.indexOf('%');
@@ -118,6 +118,3 @@ function unescape(str: string): string {
 
   return decoded + str.slice(last);
 }
-
-
-export default unescape;

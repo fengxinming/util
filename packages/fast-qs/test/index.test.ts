@@ -3,10 +3,10 @@ import { parse, stringify } from 'node:querystring';
 
 import { expect, it } from 'vitest';
 
-import fastEscape from '../../uri-escapify/src/escape';
-import appendQuery from '../src/append';
-import parseQuery from '../src/parse';
-import stringifyQuery from '../src/stringify';
+import { escape as fastEscape } from '../../uri-escapify/src/escape';
+import { append as appendQuery } from '../src/append';
+import { parse as parseQuery } from '../src/parse';
+import { stringify as stringifyQuery } from '../src/stringify';
 
 it('测试 stringify', () => {
   const testData1 = { a: 1, b: null, c: undefined, d: NaN, e: '', f: true, g: false, h: Infinity };

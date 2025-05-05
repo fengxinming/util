@@ -1,9 +1,16 @@
 
-import parseQuery from './_parse';
-import stringifyQuery from './_stringify';
-import escape from './escape';
-import type { AppendOptions } from './types';
-import unescape from './unescape';
+import { _parse as parseQuery } from './_parse';
+import { _stringify as stringifyQuery } from './_stringify';
+import { escape } from './escape';
+import { unescape } from './unescape';
+
+export interface AppendOptions {
+  sep?: string;
+  eq?: string;
+  decodeURIComponent?: (str: string) => string;
+  encodeURIComponent?: (str: string) => string;
+  filter?: (key: string, val: any) => any;
+}
 
 function concat(url: string, query: string, hasQM: boolean): string {
   return url + (hasQM ? '&' : '?') + query;
@@ -70,7 +77,7 @@ function appendQuery(url: string, qs: string): string {
  * @param opts 可选参数
  * @returns 追加 query 参数后的 URL 地址
  */
-export default function append(
+export function append(
   url: string,
   query: string | object,
   opts?: AppendOptions

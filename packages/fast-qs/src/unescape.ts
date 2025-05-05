@@ -4,7 +4,7 @@
  * @param str 编码过的字符串
  * @returns
  */
-export default function unescape(str: string): string {
+export function unescape(str: string): string {
   try {
     return decodeURIComponent(str);
   }

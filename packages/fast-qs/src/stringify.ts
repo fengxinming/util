@@ -1,7 +1,13 @@
 
-import stringifyQuery from './_stringify';
-import escape from './escape';
-import type { StringifyOptions } from './types';
+import { _stringify as stringifyQuery } from './_stringify';
+import { escape } from './escape';
+
+export interface StringifyOptions {
+  sep?: string;
+  eq?: string;
+  encodeURIComponent?: (str: string) => string;
+  filter?: (key: string, val: any) => any;
+}
 
 /**
  * 通过遍历对象的自身属性从给定的 obj 生成 URL 查询字符串
@@ -11,7 +17,7 @@ import type { StringifyOptions } from './types';
  * // 'a=1&a=2&a=3&a=4&b=test'
  *
  */
-export default function stringify(
+export function stringify(
   obj: Record<string, any>,
   options?: StringifyOptions
 ): string {

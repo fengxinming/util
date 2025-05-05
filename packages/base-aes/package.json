@@ -1,0 +1,43 @@
+{
+  "name": "base-aes",
+  "version": "2.0.0",
+  "description": "AES encryption/decryption.",
+  "types": "dist/index.d.ts",
+  "module": "dist/index.mjs",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "vite build",
+    "prepublishOnly": "npm run build",
+    "release": "pnpm publish --no-git-checks",
+    "test": "vitest run --coverage"
+  },
+  "keywords": [
+    "crypto",
+    "aes",
+    "cbc",
+    "ecb"
+  ],
+  "files": [
+    "dist"
+  ],
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/fengxinming/util.git"
+  },
+  "author": "Jesse Feng <fxm0016@126.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fengxinming/util/issues"
+  },
+  "homepage": "https://fengxinming.github.io/util/modules/base-aes/",
+  "devDependencies": {
+    "@vitest/coverage-v8": "^3.1.1",
+    "vite": "^6.3.4",
+    "vite-plugin-build-chunk": "^6.0.0",
+    "vite-plugin-combine": "^6.2.1",
+    "vitest": "^3.1.1"
+  }
+}
