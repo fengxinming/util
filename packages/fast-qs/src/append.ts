@@ -12,7 +12,7 @@ export interface AppendOptions {
   filter?: (key: string, val: any) => any;
 }
 
-function concat(url: string, query: string, hasQM: boolean): string {
+function concatQuery(url: string, query: string, hasQM: boolean): string {
   return url + (hasQM ? '&' : '?') + query;
 }
 
@@ -35,8 +35,8 @@ function appendQuery(url: string, qs: string): string {
   }
 
   return hashMark === -1
-    ? concat(url, qs, questionMark !== -1)
-    : concat(url.slice(0, hashMark), qs, questionMark !== -1) + url.slice(hashMark);
+    ? concatQuery(url, qs, questionMark !== -1)
+    : concatQuery(url.slice(0, hashMark), qs, questionMark !== -1) + url.slice(hashMark);
 }
 
 

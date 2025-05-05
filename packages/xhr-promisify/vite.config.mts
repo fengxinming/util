@@ -25,7 +25,8 @@ export default defineConfig({
         importFrom(importer, libName) {
           return {
             es: `${libName}/dist/${importer}.mjs`,
-            cjs: `${libName}/dist/${importer}`
+            cjs: `${libName}/dist/${importer}`,
+            name: `{ ${importer} }`
           };
         }
       }]
