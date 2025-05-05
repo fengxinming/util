@@ -1,4 +1,4 @@
-import { append } from 'fast-qs';
+import { stringify } from 'fast-qs';
 
 import {
   ABORT_ERR,
@@ -75,6 +75,40 @@ function _validateStatus(status: number): boolean {
   return (status >= 200 && status < 300) || status === 304;
 }
 
+
+function concatQuery(url: string, query: string, hasQM: boolean): string {
+  return url + (hasQM ? '&' : '?') + query;
+}
+
+function appendQuery(url: string, qs?: string | Record<string, any>): string {
+  if (!qs) {
+    return url;
+  }
+  if (typeof qs === 'object') {
+    qs = stringify(qs);
+  }
+  let questionMark = -1;
+  let hashMark = -1;
+  const len = url.length;
+
+  // eslint-disable-next-line no-labels
+  loop: for (let i = 0; i < len; i++) {
+    switch (url[i]) {
+      case '?':
+        questionMark = i;
+        break;
+      case '#':
+        hashMark = i;
+        // eslint-disable-next-line no-labels
+        break loop;
+    }
+  }
+
+  return hashMark === -1
+    ? concatQuery(url, qs, questionMark !== -1)
+    : concatQuery(url.slice(0, hashMark), qs, questionMark !== -1) + url.slice(hashMark);
+}
+
 /**
  * Ajax 请求
  *
@@ -104,7 +138,6 @@ export function ajax(options: AjaxRequestOptions | string): Promise<AjaxResponse
       headers,
       signal,
       timeout,
-      query,
       body,
       auth,
       withCredentials,
@@ -115,10 +148,7 @@ export function ajax(options: AjaxRequestOptions | string): Promise<AjaxResponse
     } = options;
     let onCanceled: () => void;
 
-    let { url } = options;
-    if (query) {
-      url = append(url, query);
-    }
+    const url = appendQuery(options.url, options.query);
 
     const requestHeaders = Object.assign({
       'X-Requested-With': 'XMLHttpRequest'
