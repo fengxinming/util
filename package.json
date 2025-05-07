@@ -17,18 +17,14 @@
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
     "eslint": "eslint --ext .js,.mjs,.jsx,.ts,.tsx --fix --ignore-path .eslintignore ./",
-    "build:all": "pnpm run --parallel --filter=./packages/* build",
-    "build:deps": "pnpm run --parallel --filter=xhr-promisify^... --filter=date-manip build",
+    "build:deps": "pnpm run --parallel --filter=date-manip build",
     "test:all": "npm run build:deps && pnpm run --parallel --filter=./packages/* test",
-    "release:all": "node ./release.mjs",
+    "release:all": "publish-pkgs packages/*",
     "prepare": "husky"
   },
   "dependencies": {
-    "@types/debug": "^4.1.12",
-    "cross-spawn": "^7.0.6",
-    "debug": "^4.4.0",
     "markdown-it-mathjax3": "^4.3.2",
-    "undici": "^7.8.0",
+    "publish-pkgs": "^1.0.0",
     "vitepress": "^1.6.3",
     "vitepress-plugin-group-icons": "^1.3.8"
   },
