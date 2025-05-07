@@ -45,5 +45,3 @@ features:
 * [properties-like](/zh/modules/properties-like/) - **Java Properties 实现库**：基于 TypeScript 实现 Java [`.properties` 规范](https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/Properties.html#load(java.io.Reader))，支持配置文件解析、序列化、变量插值及 Unicode 处理等高级功能。
 
 * [uri-escapify](/zh/modules/uri-escapify/) - **URI 编码工具库**：一个轻量级的URI转义工具库，提供 `escape` 和 `unescape` 功能。
-
-* [xhr-Promisify](/zh/modules/xhr-promisify/) - **轻量级 Promise 化 XHR 库**：将传统的 `XMLHttpRequest` 封装为基于 Promise 的接口，简化异步请求开发。
