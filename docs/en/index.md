@@ -45,5 +45,3 @@ features:
 * [properties-like](/modules/properties-like/) - **Java Properties Implementation**：A TypeScript implementation of the Java `.properties` specification, supporting configuration parsing, serialization, variable interpolation, and Unicode processing.
 
 * [uri-escapify](/modules/uri-escapify/) - **URI Escaping Library**：A lightweight library for URI encoding and decoding, offering `escape` and `unescape` functionality.
-
-* [xhr-Promisify](/modules/xhr-promisify/) - **Promise-based XHR Library**：Encapsulates traditional `XMLHttpRequest` into a Promise-based interface for simplified asynchronous request handling.
