@@ -78,18 +78,12 @@ export class EEvent<T> {
   propagationStarted: boolean;
   payload?: any;
 
-  constructor(eventType: string | EventType, currentTarget: T) {
+  constructor(eventType: EventType, currentTarget: T) {
     this.target = currentTarget;
     this.currentTarget = currentTarget;
     this.propagationStarted = true;
-
-    if (typeof eventType === 'string') {
-      this.type = eventType;
-    }
-    else {
-      this.type = eventType.type;
-      this.payload = eventType.payload;
-    }
+    this.type = eventType.type;
+    this.payload = eventType.payload;
   }
 
   stopImmediatePropagation(): void {
@@ -154,7 +148,15 @@ export class Emitter {
     return this;
   }
 
-  emit(eventType: string | EventType): number {
+  emit(eventType: EventType): number;
+  emit(eventType: string, payload?: any): number;
+  emit(eventType: string | EventType, payload?: any): number {
+    if (typeof eventType === 'string') {
+      eventType = {
+        type: eventType,
+        payload
+      };
+    }
     const evt = new EEvent(eventType, this);
     const { type } = evt;
     const { __listeners } = this;

@@ -1,6 +1,6 @@
 {
   "name": "eemitt",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "A lightweight, TypeScript-native event emitter library supporting modular event listeners, one-time triggers, propagation control, and more.",
   "types": "dist/index.d.ts",
   "module": "dist/index.mjs",
